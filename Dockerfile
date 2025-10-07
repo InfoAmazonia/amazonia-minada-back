@@ -17,7 +17,6 @@ COPY package.json ./
 RUN npm install --production
 
 COPY --from=build /usr/app/dist ./dist
-COPY .env .env.example ./
 
 RUN npm install pm2 -g
 

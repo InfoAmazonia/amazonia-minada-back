@@ -1,7 +1,9 @@
-import dotenv from 'dotenv-safe'
+import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
-dotenv.config()
+dotenv.config({
+  quiet: true
+});
 
 async function main() {
   var uri: string = '';
