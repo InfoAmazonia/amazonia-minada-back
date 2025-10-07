@@ -2,6 +2,11 @@ import 'reflect-metadata'
 import cors from 'cors'
 import express from 'express'
 import 'express-async-errors'
+import { InitLogger, InitRequestLogger } from './utils/logging'
+
+InitLogger();
+
+// -
 
 import { errorHandler } from './errors'
 import { router } from './routes'
@@ -16,5 +21,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/api', router)
 app.use(errorHandler)
+app.use(InitRequestLogger());
 
 app.listen(5000, () => console.log('Server is running!'))

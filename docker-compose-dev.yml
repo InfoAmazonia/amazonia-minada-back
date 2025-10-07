@@ -6,8 +6,10 @@ services:
     build: .
     ports:
       - 5000:5000
+    depends_on:
+      - database
     env_file:
-      - .env
+      - .env    
 
   database:
     image: mongo

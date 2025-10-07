@@ -9,6 +9,7 @@ import { GetYearsController } from '../services/getYears/GetYearsController'
 import { InvasionRankingController } from '../services/invasionRanking/InvasionRankingController'
 import { ListInvasionsController } from '../services/listInvasions/ListInvasionsController'
 import { SearchController } from '../services/search/SearchController'
+import { ServerController } from '../services/server/ServerController'
 
 const router = Router()
 
@@ -21,6 +22,7 @@ const getRequirementsPhaseController = new GetRequirementsPhaseController()
 const getInvasionsShapeController = new GetInvasionsShapeController()
 const getYearsController = new GetYearsController()
 const getUsesController = new GetUsesController()
+const serverController = new ServerController()
 
 router.get('/search/:searchTerm', searchController.handle)
 router.post('/invasions', listInvasionsController.handle)
@@ -34,5 +36,6 @@ router.post('/invasions/shape', getInvasionsShapeController.handle)
 router.get('/invasions/uses', getUsesController.handle)
 router.post('/statistics', getStatisticsController.handle)
 router.get('/reserves/phase', getReservesPhaseController.handle)
+router.get('/server/healthz', serverController.Healthpoint);
 
 export { router }

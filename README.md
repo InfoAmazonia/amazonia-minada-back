@@ -764,3 +764,19 @@ Método que retorna o ranking de acordo com a propiedade e o tipo de dado especi
       }
       ```
       **Descrição:** Erro interno do servidor.
+
+**Health Check**
+---
+Endpoint que retorna se o servidor está online e a conexão com a base de dados está funcional.
+
+* **URL:**
+  
+      /api/server/healthz?secret={SECRET}
+
+* **Método:**
+
+  `GET`
+
+* **Parâmetros na URL:**
+  
+  - secret:[string] =  Chave Secreta. Necessária para impedir acessos anonimos ao teste.
