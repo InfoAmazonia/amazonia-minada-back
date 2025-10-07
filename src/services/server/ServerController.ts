@@ -23,5 +23,7 @@ export class ServerController {
             getLogger().error(error);
             response.status(500);
         }
+
+        response.end();
     }
 }

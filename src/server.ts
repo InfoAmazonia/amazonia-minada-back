@@ -19,8 +19,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(InitRequestLogger());
 app.use('/api', router)
 app.use(errorHandler)
-app.use(InitRequestLogger());
 
 app.listen(5000, () => console.log('Server is running!'))
