@@ -2,40 +2,26 @@ version: '2'
 
 services:
   server:
-    container_name: amazonia-minada-back-dev
     restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    working_dir: /usr/app
-    command: npm run dev
-    volumes:
-      - .:/usr/app
+    build: .
     ports:
       - 5000:5000
-    links:
-      - database
-    depends_on:
-      - database
     env_file:
       - .env
-    environment:
-      MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
-      MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
-      MONGO_DB_ADDRESS: ${MONGO_DB_ADDRESS}
-      TZ: America/Sao_Paulo
 
   database:
     image: mongo
-    container_name: mongodb
     volumes:
-      - ./sysbkp/data:/data
+      - dbdata:/data
     ports:
       - 27017:27017
     restart: always
     env_file:
       - .env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
       TZ: America/Sao_Paulo
+
+volumes:
+  dbdata:
