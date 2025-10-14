@@ -15,6 +15,10 @@ async function main() {
   }
   else {
     uri = process.env.MONGO_URI;
+
+    if(uri.indexOf("ssl=false") > 0) {
+      uri.replace("ssl=false", "ssl=true");
+    }
   }
 
   await mongoose.connect(
