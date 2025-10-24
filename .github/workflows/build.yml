@@ -38,3 +38,12 @@ jobs:
           tags: |
             ghcr.io/infoamazonia/amazonia-minada-back:latest
             ghcr.io/infoamazonia/amazonia-minada-back:${{ steps.tag.outputs.tag }}
+            
+      - name: Save image name
+        run: echo "ghcr.io/infoamazonia/amazonia-minada-back:${{ steps.tag.outputs.tag }}" > lastest-build.txt
+      
+      - name: Upload image tag artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lastest-build
+          path: lastest-build.txt
