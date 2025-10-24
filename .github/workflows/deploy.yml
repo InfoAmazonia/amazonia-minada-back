@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Download image tag artifact
         uses: actions/download-artifact@v3
@@ -22,10 +23,11 @@ jobs:
           echo "IMAGE_TAG=$IMAGE_TAG"
           echo "image=$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Azure Login
-        uses: azure/login@v1
+      - name: Login to Azure using OIDC
+        uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
 
       - name: Deploy to Azure Container App
         run: |
