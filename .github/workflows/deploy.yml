@@ -5,6 +5,7 @@ on:
     workflows: ["Build and Push Docker Image"]
     types:
       - completed
+    conclusion: success
   workflow_dispatch:
   
 jobs:
@@ -16,6 +17,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: lastest-build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Read image tag
         id: read_tag
