@@ -13,9 +13,9 @@ jobs:
     environment: production
     steps:
       - name: Download image tag artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: image-tag
+          name: lastest-build
 
       - name: Read image tag
         id: read_tag
