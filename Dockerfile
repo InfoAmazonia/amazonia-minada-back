@@ -11,6 +11,9 @@ RUN npm run build
 
 FROM node:24-bookworm-slim
 
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
 WORKDIR /usr/app
 
 COPY package.json ./

@@ -23,6 +23,11 @@ async function main() {
 
   await mongoose.connect(
     uri,
+    {
+      w: 'majority',
+      readPreference: 'primary',
+      retryWrites: true,
+    }
   );
 }
 
