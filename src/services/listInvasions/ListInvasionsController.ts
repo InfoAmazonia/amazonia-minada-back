@@ -7,6 +7,26 @@ import { paginate } from '../../utils/pagination'
 import { filterSchema } from '../../yup/schemas/filterSchema'
 import { ListInvasionsService } from './ListInvasionsService'
 
+// Keep the CSV schema stable, including when the selection has no rows.
+const csvFields = [
+  'key',
+  'id',
+  'company',
+  'process',
+  'area',
+  'year',
+  'state',
+  'miningProcess',
+  'territory',
+  'type',
+  'substance',
+  'use',
+  'lastEvent',
+  'miningProcessType',
+  'reservePhase',
+  'reserveEthnicity',
+]
+
 class ListInvasionsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { filters, enableUnity, enableReserve } = request.body
@@ -29,7 +49,7 @@ class ListInvasionsController {
     )
 
     if (output === 'csv') {
-      const data = json2csv.parse(invasions)
+      const data = json2csv.parse(invasions, { fields: csvFields })
       return response.attachment('invasions.csv').status(200).send(data)
     }
 
