@@ -1,6 +1,9 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
+// Preserve the existing query-filter behavior after upgrading Mongoose.
+mongoose.set('strictQuery', true)
+
 dotenv.config({
   quiet: true
 });

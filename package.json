@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "./node_modules/.bin/ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "build": "tsc -p .",
-    "production": "pm2-runtime dist/server.js"
+    "production": "node dist/server.js",
+    "test": "npm run build && node tests/csv-export.cjs"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,7 +18,7 @@
     "express-async-errors": "^3.1.1",
     "geojson": "^0.5.0",
     "json2csv": "^5.0.6",
-    "mongoose": "^6.0.0",
+    "mongoose": "9.11.3",
     "morgan": "^1.10.1",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0",
@@ -45,6 +46,10 @@
     "eslint-plugin-promise": "^4.2.1",
     "prettier": "^2.3.2",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
+    "typescript": "^7.0.2",
+    "@types/node": "^24.19.2"
+  },
+  "engines": {
+    "node": ">=24.22.1 <25"
   }
 }

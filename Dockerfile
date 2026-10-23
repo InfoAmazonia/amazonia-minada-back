@@ -1,28 +1,20 @@
-FROM node:24-bookworm-slim AS build
-
+ARG NODE_IMAGE=node:24.22.1-bookworm-slim@sha256:55fb5f5a527ea2c5c4a95f963e48ef90aa38c7b346054fdc8ee9957a2b55d205
+FROM ${NODE_IMAGE} AS build
 WORKDIR /usr/app
-
-COPY package.json ./
-COPY tsconfig.json ./
+COPY package.json package-lock.json tsconfig.json ./
+RUN npm ci
 COPY src ./src
-
-RUN npm install
-RUN npm run build
-
-FROM node:24-bookworm-slim
-
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
-
+COPY tests ./tests
+RUN npm test
+FROM ${NODE_IMAGE} AS dependencies
 WORKDIR /usr/app
-
-COPY package.json ./
-RUN npm install --production
-
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+FROM ${NODE_IMAGE} AS runtime
+ENV NODE_ENV=production LANG=C.UTF-8 LC_ALL=C.UTF-8
+WORKDIR /usr/app
+COPY --from=dependencies /usr/app/node_modules ./node_modules
 COPY --from=build /usr/app/dist ./dist
-
-RUN npm install pm2 -g
-
+COPY package.json ./
 EXPOSE 5000
-CMD ["pm2-runtime", "dist/server.js"]
-
+CMD ["node", "dist/server.js"]
