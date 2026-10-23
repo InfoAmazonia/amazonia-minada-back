@@ -1,0 +1,6 @@
+# Compose >= 2.24.4. Apply after provisioning the application roles/users.
+services:
+  server:
+    env_file: !override
+      - ./.secrets/backend.env
+    environment: !override {}

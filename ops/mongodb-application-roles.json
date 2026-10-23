@@ -1,0 +1,238 @@
+{
+  "database": "icfj",
+  "roles": [
+    {
+      "role": "minadaBackendReader",
+      "privileges": [
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "licenses"
+          },
+          "actions": [
+            "find"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "unities"
+          },
+          "actions": [
+            "find"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reserves"
+          },
+          "actions": [
+            "find"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "invasions"
+          },
+          "actions": [
+            "find"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reserveinvasions"
+          },
+          "actions": [
+            "find"
+          ]
+        }
+      ],
+      "roles": []
+    },
+    {
+      "role": "minadaImporter",
+      "privileges": [
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": ""
+          },
+          "actions": [
+            "listCollections",
+            "renameCollectionSameDB"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "licenses"
+          },
+          "actions": [
+            "find",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "unities"
+          },
+          "actions": [
+            "find",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reserves"
+          },
+          "actions": [
+            "find",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "licenses_importing"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "createCollection",
+            "createIndex",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "unities_importing"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "createCollection",
+            "createIndex",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reserves_importing"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "createCollection",
+            "createIndex",
+            "dropCollection"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "invasions"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reserveinvasions"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "invasionen_queueitems"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "invasionpt_queueitems"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reverseinvasionen_queueitems"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "reverseinvasionpt_queueitems"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "update"
+          ]
+        },
+        {
+          "resource": {
+            "db": "icfj",
+            "collection": "import_locks"
+          },
+          "actions": [
+            "find",
+            "insert",
+            "remove"
+          ]
+        }
+      ],
+      "roles": []
+    }
+  ],
+  "users": [
+    {
+      "user": "minada_backend",
+      "roles": [
+        {
+          "role": "minadaBackendReader",
+          "db": "icfj"
+        }
+      ]
+    },
+    {
+      "user": "minada_importer",
+      "roles": [
+        {
+          "role": "minadaImporter",
+          "db": "icfj"
+        }
+      ]
+    }
+  ]
+}
