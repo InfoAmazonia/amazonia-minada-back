@@ -1,0 +1,5 @@
+# Compose >= 2.24.4. Apply with the production base file that defines database.
+services:
+  database:
+    ports: !override
+      - "127.0.0.1:27017:27017"
