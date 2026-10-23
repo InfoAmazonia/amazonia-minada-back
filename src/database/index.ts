@@ -24,6 +24,9 @@ async function main() {
   await mongoose.connect(
     uri,
     {
+      // Application credentials do not manage schema during startup.
+      autoCreate: false,
+      autoIndex: false,
       w: 'majority',
       readPreference: 'primary',
       retryWrites: true,
