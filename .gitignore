@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Service-specific credentials (never commit)
+/.secrets/
+
+__pycache__/
+*.pyc

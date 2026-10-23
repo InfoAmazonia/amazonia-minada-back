@@ -1,0 +1,24 @@
+[Unit]
+Description=Minada MongoDB backup with complete isolated restore verification
+Requires=docker.service
+After=docker.service
+StartLimitIntervalSec=3h
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+Environment=DOCKER_HOST=unix:///var/run/docker.sock
+ExecStart=/usr/bin/python3 /usr/local/sbin/minada-mongodb-daily.py --root /var/backups/minada/daily --keep 14 --failed-keep 3 --min-free-gib 4
+TimeoutStartSec=45min
+Restart=on-failure
+RestartSec=30min
+Nice=10
+IOSchedulingClass=idle
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/backups/minada/daily /run
+NoNewPrivileges=true

@@ -14,7 +14,7 @@ Preencha as informações necessárias no arquivo .env. Em seguida, para rodar a
     
 Para executar em ambiente de desenvolvimento, execute o comando para instalar as dependências:
 
-    $ yarn install
+    $ npm ci
     
 Em seguida, rode o container de desenvolvimento:
 
